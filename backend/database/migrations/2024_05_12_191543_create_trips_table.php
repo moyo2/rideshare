@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Driver::class);
+            $table->boolean('is_started')->default(false);
+            $table->boolean('is_completed')->default(false);
+            $table->json('origin')->nullable();
+            $table->string('destination_name')->nullable();
+            $table->json('driver_location')->nullable();
             $table->timestamps();
         });
     }
